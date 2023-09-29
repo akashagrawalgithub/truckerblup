@@ -1,5 +1,5 @@
 import 'dart:ui';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:trucker/screen/bottom_navigation/bottom.dart';
@@ -26,7 +26,7 @@ class _NameState extends State<Name> {
   bool isLastNameValid = true;
   bool isEmailValid = true;
   bool isPhoneNumberValid = true;
-
+  bool isButtonEnabled = false;
   // void signUserOut(BuildContext context) {
   //   GoogleSignIn().disconnect();
   //   Navigator.of(context)
@@ -39,6 +39,19 @@ class _NameState extends State<Name> {
   void initState() {
     super.initState();
     // emailController.text = widget.email;
+    emailController.addListener(updateButtonState);
+    lastNameController.addListener(updateButtonState);
+    emailController.addListener(updateButtonState);
+    phoneController.addListener(updateButtonState);
+  }
+
+  void updateButtonState() {
+    setState(() {
+      isButtonEnabled = firstNameController.text.isNotEmpty &&
+          lastNameController.text.isNotEmpty &&
+          emailController.text.isNotEmpty &&
+          phoneController.text.isNotEmpty;
+    });
   }
 
   @override
@@ -59,13 +72,12 @@ class _NameState extends State<Name> {
     });
   }
 
-  bool isNameValid(String? value) {
-    return RegExp(r'^[a-zA-Z]+$').hasMatch(value ?? "");
+  bool isNameValid(String value) {
+    return RegExp(r'^[a-zA-Z]+$').hasMatch(value) && value.isNotEmpty;
   }
 
-  bool Emailvalid(String? value) {
-    return RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
-        .hasMatch(value ?? "");
+  bool Emailvalid(String value) {
+    return RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(value);
   }
 
   @override
@@ -122,7 +134,7 @@ class _NameState extends State<Name> {
                     padding: const EdgeInsets.only(left: 16),
                     decoration: BoxDecoration(
                       border: !isFirstNameValid
-                          ? Border.all(color: Color(0xFFFF8D49))
+                          ? Border.all(color: Colors.red)
                           : null,
                       borderRadius: BorderRadius.circular(10),
                       color: const Color(0xFFF2F4F7),
@@ -131,8 +143,10 @@ class _NameState extends State<Name> {
                       controller: firstNameController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (!Emailvalid(value)) {
-                          return 'Invalid First name';
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the fist name';
+                        } else if (!isNameValid(value)) {
+                          return 'Please enter a only Text in first name.';
                         }
                         return null;
                       },
@@ -151,7 +165,7 @@ class _NameState extends State<Name> {
                 const Text(
                   'Please enter a only Text in first name.',
                   style: TextStyle(
-                    color: Color(0xFFFF8D49),
+                    color: Colors.red,
                     fontSize: 12,
                   ),
                 ),
@@ -177,9 +191,7 @@ class _NameState extends State<Name> {
                     padding: const EdgeInsets.only(left: 16),
                     decoration: BoxDecoration(
                       border: !isLastNameValid
-                          ? Border.all(
-                              color: Color(0xFFFF8D49),
-                            )
+                          ? Border.all(color: Colors.red)
                           : null,
                       borderRadius: BorderRadius.circular(10),
                       color: const Color(0xFFF2F4F7),
@@ -188,8 +200,10 @@ class _NameState extends State<Name> {
                       controller: lastNameController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (!Emailvalid(value)) {
-                          return 'Invalid email format';
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the last name';
+                        } else if (!isNameValid(value)) {
+                          return 'Please enter a only Text in last name.';
                         }
                         return null;
                       },
@@ -208,7 +222,7 @@ class _NameState extends State<Name> {
                 const Text(
                   'Please enter a only Text in last name.',
                   style: TextStyle(
-                    color: Color(0xFFFF8D49),
+                    color: Colors.red,
                     fontSize: 12,
                   ),
                 ),
@@ -241,7 +255,9 @@ class _NameState extends State<Name> {
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (!Emailvalid(value)) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter an email';
+                        } else if (!Emailvalid(value)) {
                           return 'Invalid email format';
                         }
                         return null;
@@ -258,11 +274,14 @@ class _NameState extends State<Name> {
                 ],
               ),
               if (!isEmailValid)
-                Text(
-                  'Invalid email format',
-                  style: TextStyle(
-                    color: Color(0xFFFF8D49),
-                    fontSize: 12,
+                const Padding(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Text(
+                    'Invalid email format',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               const SizedBox(height: 12),
@@ -387,7 +406,9 @@ class _NameState extends State<Name> {
                 height: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: const Color(0xFFFF8D49),
+                  color: isButtonEnabled
+                      ? const Color(0xFFFF8D49)
+                      : const Color(0xFFF9FAFB),
                 ),
                 child: TextButton(
                   onPressed: () async {
@@ -397,13 +418,15 @@ class _NameState extends State<Name> {
                     //       builder: (context) => const Bottom()));
                     // }
                   },
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       'Continue',
                       style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white),
+                          color: isButtonEnabled
+                              ? Colors.white
+                              : const Color(0xFF98A2B3)),
                     ),
                   ),
                 ),

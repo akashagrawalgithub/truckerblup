@@ -29,8 +29,8 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         // body: LoginPage(),
         // body: VerifyOTP(),
-        // body: Name(),
-        body: PopuiWidget(),
+        body: Name(),
+        // body: PopuiWidget(),
       ),
     );
   }
