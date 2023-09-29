@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "511453707773",
+    "project_id": "truckerapp-6d70d",
+    "storage_bucket": "truckerapp-6d70d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511453707773:android:1dee664e67e8290e71ed94",
+        "android_client_info": {
+          "package_name": "com.example.trucker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511453707773-kofpftqe9g6ievjvud581kkuc8icda8h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trucker",
+            "certificate_hash": "6fddbe6504eb2accc5e3d188fc8d0e3fbad3de63"
+          }
+        },
+        {
+          "client_id": "511453707773-raau41loajrbvs742j8975t7nulr557u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZDNMyg6vUuFYawB56vyGCr7ux9IuSgSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511453707773-lbnrsd7gtapsmpt8eoisalldptfi9pqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511453707773:android:77cbee24974dc9b271ed94",
+        "android_client_info": {
+          "package_name": "com.example.trucker_email_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511453707773-raau41loajrbvs742j8975t7nulr557u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZDNMyg6vUuFYawB56vyGCr7ux9IuSgSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511453707773-lbnrsd7gtapsmpt8eoisalldptfi9pqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
