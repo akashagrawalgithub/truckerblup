@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:trucker_email_login/screens/sample_page.dart';
 
@@ -15,6 +15,31 @@ class _PopuiWidgetState extends State<PopuiWidget> {
   final _timeLeft = "10";
   final tipAmount = 30;
   final userEmailController = TextEditingController();
+  CountryCode? selectedCountry;
+  TextEditingController phoneNumberController = TextEditingController();
+  FocusNode phoneNumberFocus = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    selectedCountry = CountryCode.fromCountryCode("US");
+    phoneNumberController.text = '';
+  }
+
+  @override
+  void dispose() {
+    phoneNumberController.dispose();
+    phoneNumberFocus.dispose();
+    super.dispose();
+  }
+
+  void _onCountryChange(CountryCode? countryCode) {
+    setState(() {
+      selectedCountry = countryCode;
+      phoneNumberController.text = '';
+    });
+    FocusScope.of(context).requestFocus(phoneNumberFocus);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -512,35 +537,93 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                                                 ),
                                               ),
                                               const SizedBox(height: 6),
-                                              Container(
-                                                width: double.infinity,
-                                                padding: const EdgeInsets.only(
-                                                    left: 16),
-                                                decoration: ShapeDecoration(
-                                                  color:
-                                                      const Color(0xFFF2F3F6),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                ),
-                                                child: const TextField(
-                                                  keyboardType:
-                                                      TextInputType.phone,
-                                                  decoration: InputDecoration(
-                                                    hintStyle: TextStyle(
-                                                      color: Color(0xFF98A1B2),
-                                                      fontSize: 16,
-                                                      fontFamily: 'SF Pro',
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                              Row(
+                                                children: [
+                                                  IntrinsicWidth(
+                                                    child: Container(
+                                                      height: 48,
+                                                      decoration:
+                                                          ShapeDecoration(
+                                                        color:
+                                                            Color(0xFFF2F3F6),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                        child:
+                                                            CountryCodePicker(
+                                                          flagWidth: 40,
+                                                          onChanged:
+                                                              _onCountryChange,
+                                                          onInit:
+                                                              (countryCode) {
+                                                            if (countryCode !=
+                                                                null) {
+                                                              selectedCountry =
+                                                                  countryCode;
+                                                            }
+                                                          },
+                                                          hideMainText: true,
+                                                          initialSelection:
+                                                              'US',
+                                                          favorite: [
+                                                            'IN',
+                                                            'CA'
+                                                          ],
+                                                          showOnlyCountryWhenClosed:
+                                                              false,
+                                                        ),
+                                                      ),
                                                     ),
-                                                    hintText:
-                                                        "Enter your number",
-                                                    border: InputBorder.none,
                                                   ),
-                                                ),
+                                                  const SizedBox(width: 8),
+                                                  Expanded(
+                                                    child: Container(
+                                                      // width: double.infinity,
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 16),
+                                                      decoration:
+                                                          ShapeDecoration(
+                                                        color: const Color(
+                                                            0xFFF2F3F6),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                      ),
+                                                      child: TextField(
+                                                        controller:
+                                                            phoneNumberController,
+                                                        keyboardType:
+                                                            TextInputType.phone,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintStyle:
+                                                              const TextStyle(
+                                                            color: Color(
+                                                                0xFF98A1B2),
+                                                            fontSize: 16,
+                                                            fontFamily:
+                                                                'SF Pro',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                          hintText:
+                                                              "${selectedCountry?.dialCode} Enter your number",
+                                                          border:
+                                                              InputBorder.none,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
