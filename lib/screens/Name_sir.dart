@@ -143,10 +143,10 @@ class _NameState extends State<Name> {
                       controller: firstNameController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the fist name';
-                        } else if (!isNameValid(value)) {
-                          return 'Please enter a only Text in first name.';
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            !isNameValid(value)) {
+                          return 'Please enter only letters in the first name.';
                         }
                         return null;
                       },
@@ -161,14 +161,7 @@ class _NameState extends State<Name> {
                   ),
                 ],
               ),
-              if (!isFirstNameValid)
-                const Text(
-                  'Please enter a only Text in first name.',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 12,
-                  ),
-                ),
+
               const SizedBox(height: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,10 +193,10 @@ class _NameState extends State<Name> {
                       controller: lastNameController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the last name';
-                        } else if (!isNameValid(value)) {
-                          return 'Please enter a only Text in last name.';
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            !isNameValid(value)) {
+                          return 'Please enter only letters in the second name.';
                         }
                         return null;
                       },
@@ -218,14 +211,6 @@ class _NameState extends State<Name> {
                   ),
                 ],
               ),
-              if (!isLastNameValid)
-                const Text(
-                  'Please enter a only Text in last name.',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 12,
-                  ),
-                ),
               const SizedBox(height: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,9 +240,9 @@ class _NameState extends State<Name> {
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter an email';
-                        } else if (!Emailvalid(value)) {
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            !Emailvalid(value)) {
                           return 'Invalid email format';
                         }
                         return null;
