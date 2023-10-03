@@ -65,6 +65,10 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  bool Emailvalid(String value) {
+    return RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,20 +94,28 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(
               width: double.infinity,
-              height: 50,
+              // height: 50,
               padding: const EdgeInsets.only(left: 16),
               decoration: BoxDecoration(
                 color: const Color(0xFFF2F4F7),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: TextField(
+              child: TextFormField(
                 controller: widget.emailController,
                 keyboardType: TextInputType.emailAddress,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value != null && value.isNotEmpty && !Emailvalid(value)) {
+                    return 'Invalid email format';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   hintText: "Enter Your Email",
                   hintStyle: TextStyle(
                     color: Color(0xFF98A2B3),
                   ),
+                  errorStyle: TextStyle(height: 0.3),
                   border: InputBorder.none,
                 ),
               ),
@@ -111,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 8),
             Container(
               width: double.infinity,
-              height: 50,
+              // height: 50,
               padding: const EdgeInsets.only(left: 16),
               decoration: BoxDecoration(
                 color: const Color(0xFFF2F4F7),

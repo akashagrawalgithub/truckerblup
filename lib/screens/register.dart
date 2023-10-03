@@ -60,6 +60,10 @@ class _RegisterNowState extends State<RegisterNow> {
     }
   }
 
+  bool Emailvalid(String value) {
+    return RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,9 +95,16 @@ class _RegisterNowState extends State<RegisterNow> {
                 color: const Color(0xFFF2F4F7),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: TextField(
+              child: TextFormField(
                 controller: widget.registeremailcontroller,
                 keyboardType: TextInputType.emailAddress,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value != null && value.isNotEmpty && !Emailvalid(value)) {
+                    return 'Invalid email format';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   hintText: "Enter Your Email",
                   hintStyle: TextStyle(
