@@ -138,16 +138,19 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                         Expanded(
                           child: Container(
                             color: Color(0xFFF2F3F6),
-                            child: TextButton(
-                              onPressed: () {
+                            child: InkWell(
+                              onTap: () {
                                 Navigator.pop(context);
                               },
-                              child: const Text(
-                                "Cancel",
-                                style: TextStyle(
-                                  color: Color(0xFF98A1B2),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                              child: TextButton(
+                                onPressed: null,
+                                child: const Text(
+                                  "Cancel",
+                                  style: TextStyle(
+                                    color: Color(0xFF98A1B2),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),
@@ -156,16 +159,19 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                         Expanded(
                           child: Container(
                             color: Color(0xFFEAECF0),
-                            child: TextButton(
-                              onPressed: () {
+                            child: InkWell(
+                              onTap: () {
                                 log("Done Button pressed");
                               },
-                              child: const Text(
-                                "Done",
-                                style: TextStyle(
-                                  color: Color(0xFF475466),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                              child: TextButton(
+                                onPressed: null,
+                                child: const Text(
+                                  "Done",
+                                  style: TextStyle(
+                                    color: Color(0xFF475466),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),
@@ -320,17 +326,20 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                                       Expanded(
                                         child: Container(
                                           color: Color(0xFFF2F3F6),
-                                          child: TextButton(
-                                            onPressed: () {
+                                          child: InkWell(
+                                            onTap: () {
                                               Navigator.pop(context);
                                               print("No button pressed");
                                             },
-                                            child: const Text(
-                                              "No",
-                                              style: TextStyle(
-                                                color: Color(0xFF98A1B2),
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600,
+                                            child: TextButton(
+                                              onPressed: null,
+                                              child: const Text(
+                                                "No",
+                                                style: TextStyle(
+                                                  color: Color(0xFF98A1B2),
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -339,16 +348,19 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                                       Expanded(
                                         child: Container(
                                           color: Color(0xFFEAECF0),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              log("Yes Button pressed");
+                                          child: InkWell(
+                                            onTap: () {
+                                              print("YEs");
                                             },
-                                            child: const Text(
-                                              "Yes",
-                                              style: TextStyle(
-                                                color: Color(0xFF475466),
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600,
+                                            child: TextButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                "Yes",
+                                                style: TextStyle(
+                                                  color: Color(0xFF475466),
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -679,16 +691,19 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                                         Expanded(
                                           child: Container(
                                             color: Color(0xFFF2F3F6),
-                                            child: TextButton(
-                                              onPressed: () {
+                                            child: InkWell(
+                                              onTap: () {
                                                 Navigator.pop(context);
                                               },
-                                              child: const Text(
-                                                "Cancel",
-                                                style: TextStyle(
-                                                  color: Color(0xFF98A1B2),
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w600,
+                                              child: const TextButton(
+                                                onPressed: null,
+                                                child: Text(
+                                                  "Cancel",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF98A1B2),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -697,18 +712,20 @@ class _PopuiWidgetState extends State<PopuiWidget> {
                                         Expanded(
                                           child: Container(
                                             color: Color(0xFFEAECF0),
-                                            child: TextButton(
-                                              onPressed: () {
-                                                // log("Done Button pressed");
+                                            child: InkWell(
+                                              onTap: () {
                                                 Navigator.pop(context);
                                                 OnDoneShowOTP();
                                               },
-                                              child: const Text(
-                                                "Done",
-                                                style: TextStyle(
-                                                  color: Color(0xFF475466),
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w600,
+                                              child: const TextButton(
+                                                onPressed: null,
+                                                child: Text(
+                                                  "Done",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF475466),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
                                               ),
                                             ),

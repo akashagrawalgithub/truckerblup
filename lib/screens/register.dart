@@ -89,7 +89,7 @@ class _RegisterNowState extends State<RegisterNow> {
             ),
             Container(
               width: double.infinity,
-              height: 50,
+              // height: 50,
               padding: const EdgeInsets.only(left: 16),
               decoration: BoxDecoration(
                 color: const Color(0xFFF2F4F7),

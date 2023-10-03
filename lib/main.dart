@@ -3,6 +3,7 @@ import 'package:trucker_email_login/comunication_module/chart.dart';
 import 'package:trucker_email_login/screens/Name_sir.dart';
 import 'package:trucker_email_login/screens/Search.dart';
 import 'package:trucker_email_login/screens/email_otp.dart';
+import 'package:trucker_email_login/screens/group.dart';
 import "package:trucker_email_login/screens/login.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'package:trucker_email_login/screens/login_temp.dart';
@@ -30,10 +31,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: LoginPage(),
+        // body: LoginPage(),
         // body: VerifyOTP(),
         // body: Name(),
-        // body: PopuiWidget(),
+        body: PopuiWidget(),
         // body: MoreItemDragMenu(),
         // body: Login(),
         // body: Chat(),
