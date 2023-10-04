@@ -34,10 +34,10 @@ class _MyAppState extends State<MyApp> {
         // body: LoginPage(),
         // body: VerifyOTP(),
         // body: Name(),
-        body: PopuiWidget(),
+        // body: PopuiWidget(),
         // body: MoreItemDragMenu(),
         // body: Login(),
-        // body: Chat(),
+        body: Chat(),
         // body: CommunicationGroupsMute(),
       ),
     );

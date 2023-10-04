@@ -14,7 +14,7 @@ class _DateTimelinerState extends State<DateTimeliner> {
     return Center(
       child: Container(
         margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8.0),
         decoration: ShapeDecoration(
           color: const Color(0xFFEAECF0),
           shape: RoundedRectangleBorder(
